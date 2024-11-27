@@ -1,0 +1,31 @@
+const character = "!"; // Character used to form the pyramid
+const count = 10; // The height of the pyramid (number of rows)
+const rows = []; // Array to store each row of the pyramid
+let inverted = false; // Flag to control whether the pyramid is inverted or not
+
+// Function to pad the row with spaces and the character
+function padRow(rowNumber, rowCount) {
+  // Calculate leading spaces, the character to print, and trailing spaces
+  return " ".repeat(rowCount - rowNumber) + character.repeat(2 * rowNumber - 1) + " ".repeat(rowCount - rowNumber);
+}
+
+// Loop through to generate each row of the pyramid
+for (let i = 1; i <= count; i++) {
+  if (inverted) {
+    // If inverted is true, add the row at the beginning of the array (inverting the order)
+    rows.unshift(padRow(i, count));
+  } else {
+    // If inverted is false, add the row at the end of the array (normal order)
+    rows.push(padRow(i, count));
+  }
+}
+
+let result = ""; // Initialize the result string to hold the final pyramid
+
+// Loop through each row and add it to the result string with a newline
+for (const row of rows) {
+  result = result + row + "\n";
+}
+
+// Log the final result to the console
+console.log(result);
